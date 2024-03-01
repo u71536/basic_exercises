@@ -65,6 +65,41 @@ def generate_chat_history():
         })
     return messages
 
+one = generate_chat_history()
 
-if __name__ == "__main__":
-    print(generate_chat_history())
+user_comments = dict()
+
+for i in generate_chat_history():
+    if i['sent_by'] not in user_comments.keys():
+        user_comments[i['sent_by']] = 1
+    else:
+        user_comments[i['sent_by']] += 1
+
+max_comments = max(user_comments, key=user_comments.get)
+print(f'Больше всего комментариев написал пользователь {max_comments}')
+
+
+print(one)
+
+user_answers = dict()
+
+for i in generate_chat_history():
+    if i['reply_for'] != None:
+        if i['reply_for'] not in user_answers.keys():
+            user_answers[i['reply_for']] = 1
+        else:
+            user_answers[i['reply_for']] += 1
+    else:
+        pass
+
+user_answers_comment = dict()
+
+for j in generate_chat_history:
+    if j in generate_chat_history()[3]:
+        user_answers_comment[j['sent_by']] = 1
+    else:
+        user_answers_comment[j['sent_by']] += 1
+print(user_answers_comment)
+# max_comments = max(user_answers, key=user_answers.get)
+print(f'Больше всего отвечали на сообщение  {max_comments}')
+
